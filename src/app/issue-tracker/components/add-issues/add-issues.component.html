@@ -1,0 +1,61 @@
+<button mat-raised-button color="accent" style="float: left;margin: 9px 36px 7px 2px;" (click)="backViewIssue()">Back View Issue</button>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+<form novalidate (ngSubmit)="onSubmit(form)" #f="ngForm">
+  <div class="form-group"
+           [ngClass]="{
+          'has-danger': description.invalid && (description.dirty || description.touched),
+          'has-success': description.valid && (description.dirty || description.touched)}">
+        <label>Descriptiton</label>
+        <input type="text"
+               class="form-control"
+               name="description"
+               [(ngModel)]="model.description"
+               required
+               #description="ngModel">
+  </div>
+<!--------------------------------------------------Severity-------------------------------------------------------------->
+  <div class="form-group">
+    <label>Severity</label>
+      <select class="form-control" name="severity" [(ngModel)]="model.severity" required>
+        <option value=""></option>
+        <option *ngFor="let severity of severities" [value]="severity">{{severity}}</option>
+      </select>
+  </div>
+<!--------------------------------------------------Status-------------------------------------------------------------->
+  <div class="form-group">
+    <label>Status</label>
+      <select class="form-control" name="status" [(ngModel)]="model.status" required>
+        <option value=""></option>
+        <option *ngFor="let sts of status" [value]="sts">{{sts}}</option>
+      </select>
+  </div>
+<!---------------------------------------------------Create Date------------------------------------------------------------->
+  <div class="form-group">
+    <label>Create Date</label>
+      <mat-form-field>
+        <input matInput name="createDate" [matDatepicker]="createDate" placeholder="createDate" [(ngModel)]="model.createDate" required>
+        <mat-datepicker-toggle matSuffix [for]="createDate"></mat-datepicker-toggle>
+        <mat-datepicker #createDate></mat-datepicker>
+      </mat-form-field>
+  </div>
+<!-----------------------------------------------------Resolve Date----------------------------------------------------------->
+  <div class="form-group">
+    <label>Resolve Date</label>
+      <mat-form-field>
+        <input matInput name="resolvedDate" [matDatepicker]="resolvedDate" placeholder="resolvedDate" [(ngModel)]="model.resolvedDate" required>
+        <mat-datepicker-toggle matSuffix [for]="resolvedDate"></mat-datepicker-toggle>
+        <mat-datepicker #resolvedDate></mat-datepicker>
+      </mat-form-field>
+  </div>
+ <!-----------------------------------------------------Submit Button----------------------------------------------------------->
+    <button type="submit"
+            class="btn btn-primary"
+            [disabled]="f.invalid">Submit
+    </button>
+  </form> 
+  </div> 
+</div>
+</div>
